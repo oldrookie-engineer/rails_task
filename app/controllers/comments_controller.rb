@@ -11,11 +11,15 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.create(comment_params)
-    if @comment.save
-      redirect_to comments_path, notice: 'コメントを作成しました！'
-    else
+    @comment = Comment.new(comment_params)
+    if params[:back]
       render :new
+    else
+      if @comment.save
+        redirect_to comments_path, notice: 'コメントを作成しました！'
+      else
+        render :new
+      end
     end
   end
 
@@ -39,6 +43,7 @@ class CommentsController < ApplicationController
 
   def confirm
     @comment = Comment.new(comment_params)
+    render :new if @comment.invalid?
   end
 
   private
