@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :set_comment, only: [:edit, :update]
+  before_action :set_comment, only: [:edit, :update, :destroy]
 
   def index
     @comments = Comment.all
@@ -30,6 +30,11 @@ class CommentsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @comment.destroy
+    redirect_to comments_path, notice: 'コメントを削除しました'
   end
 
   private

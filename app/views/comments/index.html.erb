@@ -7,6 +7,7 @@
   <tr>
     <td><%= comment.content %></td>
     <td><%= link_to 'tweetを編集する', edit_comment_path(comment.id) %></td>
+    <td><%= link_to 'tweetを削除する', comments_path(comment.id), method: :delete %></td>
   </tr>
 <% end %>
 </table><br>
