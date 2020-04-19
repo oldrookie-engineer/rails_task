@@ -37,6 +37,10 @@ class CommentsController < ApplicationController
     redirect_to comments_path, notice: 'コメントを削除しました'
   end
 
+  def confirm
+    @comment = Comment.new(comment_params)
+  end
+
   private
   def comment_params
     params.require(:comment).permit(:content)

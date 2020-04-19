@@ -1,4 +1,5 @@
 <h1>投稿一覧</h1>
+<p><%= notice%></p>
 <table>
   <tr>
     <th>内容</th>
@@ -6,8 +7,8 @@
 <% @comments.each do |comment| %>
   <tr>
     <td><%= comment.content %></td>
-    <td><%= link_to 'tweetを編集する', edit_comment_path(comment.id) %></td>
-    <td><%= link_to 'tweetを削除する', comments_path(comment.id), method: :delete %></td>
+    <td><%= link_to 'tweetを編集する', edit_comment_path(comment.id), data: {confirm: '本当に編集していいですか？'} %></td>
+    <td><%= link_to 'tweetを削除する', comment_path(comment.id), method: :delete, data: {confirm: '本当に削除していいですか？'}  %></td>
   </tr>
 <% end %>
 </table><br>
