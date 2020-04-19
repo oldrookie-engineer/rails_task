@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   def index
     @comments = Comment.all
@@ -23,12 +23,14 @@ class CommentsController < ApplicationController
     end
   end
 
+  def show
+    params[:id]
+  end
+
   def edit
-    # @comment = Comment.find(params[:id])
   end
 
   def update
-    # @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       redirect_to comments_path, notice: 'コメントを編集しました！'
     else
@@ -37,8 +39,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    redirect_to comments_path, notice: 'コメントを削除しました'
+      @comment.destroy
+      redirect_to comments_path, notice:"コメントを削除しました！"
   end
 
   def confirm
