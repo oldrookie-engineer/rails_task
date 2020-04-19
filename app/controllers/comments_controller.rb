@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_action :set_comment, only: [:edit, :update]
+
   def index
     @comments = Comment.all
   end
@@ -9,13 +11,34 @@ class CommentsController < ApplicationController
   end
 
   def create
-    Comment.create(comment_params)
-    redirect_to new_comment_path
+    @comment = Comment.create(comment_params)
+    if @comment.save
+      redirect_to comments_path, notice: 'コメントを作成しました！'
+    else
+      render :new
+    end
+  end
+
+  def edit
+    # @comment = Comment.find(params[:id])
+  end
+
+  def update
+    # @comment = Comment.find(params[:id])
+    if @comment.update(comment_params)
+      redirect_to comments_path, notice: 'コメントを編集しました！'
+    else
+      render :edit
+    end
   end
 
   private
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
   end
 
 end

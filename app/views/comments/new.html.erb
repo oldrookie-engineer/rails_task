@@ -1,8 +1,2 @@
 <h1>Tweetをしよう！</h1>
-<%= form_with(model: @comment, local: true) do |form| %>
-  <div class="blog_content">
-    <%= form.label :content %><br>
-    <%= form.text_field :content %>
-  </div><br>
-  <%= form.submit %>
-<% end %>
+<%= render 'form' %>
