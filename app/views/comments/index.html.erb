@@ -7,7 +7,7 @@
 <% @comments.each do |comment| %>
   <tr>
     <td class="title"><%= comment.content %></td>
-    <td><%= link_to '詳細を確認する', comment_path(comment.id)%></td>
+    <td><%= link_to '詳細を確認する', comment_path(comment.id),class: 'btn btn-default'%></td>
     <td><%= link_to 'tweetを編集する', edit_comment_path(comment.id), data: {confirm: '本当に編集していいですか？'} %></td>
     <td><%= button_to 'tweetを削除する', comment_path(comment.id), method: :delete %></td>
   </tr>
